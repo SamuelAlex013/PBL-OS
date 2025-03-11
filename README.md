@@ -9,3 +9,7 @@ Make sure you have the following tools installed:
 - **GRUB** (for bootloader)  
 - **NASM** (for assembling kernel code)  
 - **QEMU** (for testing)  
+
+### 2 **For Testing**
+
+- 
