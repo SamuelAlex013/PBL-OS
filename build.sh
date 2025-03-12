@@ -4,8 +4,6 @@
 set -e
 
 #Moving grub configuration file to iso directory
-cp boot/grub/grub.cfg iso/boot/grub/grub.cfg
-echo "grub.cfg moved to boot directory."
 
 # Compile the C kernel file
 gcc -m32 -fno-stack-protector -fno-builtin -c src/kernel.c -o kernel.o
@@ -20,11 +18,11 @@ ld -m elf_i386 -T src/linker.ld -o kernel boot.o kernel.o
 echo "Kernel linked successfully."
 
 # Move the kernel to the iso directory
-mv kernel iso/kernel
+mv kernel PBL/boot/kernel
 echo "Kernel moved to iso directory."
 
 # Create the bootable ISO image with verbose output
-grub-mkrescue -o PBL-OS.iso iso/
+grub-mkrescue -o PBL-OS.iso PBL/
 echo "Bootable ISO created successfully."
 
 #delete the object files
