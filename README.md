@@ -1,10 +1,5 @@
 # PBL-OS
 
-## Directory Structure
-```
-
-```
-
 ## Prerequisites
 Before testing the OS, ensure you have the following installed:
 - GCC (for compiling the kernel)
