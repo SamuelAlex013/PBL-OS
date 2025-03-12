@@ -27,5 +27,11 @@ echo "Kernel moved to boot directory."
 grub-mkrescue -o PBL-OS.iso iso/
 echo "Bootable ISO created successfully."
 
+#delete the object files
+rm -rf *.o
+echo "Object files deleted."
+
+
 # Run the OS in QEMU
 qemu-system-i386 -cdrom PBL-OS.iso
+

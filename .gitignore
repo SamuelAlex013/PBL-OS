@@ -4,4 +4,3 @@ boot.o
 kernel.o
 PBL-OS.iso
 /boot/kernel
-PBL.iso
