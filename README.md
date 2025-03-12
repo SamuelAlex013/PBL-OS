@@ -13,23 +13,23 @@ Before testing the OS, ensure you have the following installed:
 - QEMU (for testing the OS in a virtualized environment)
 
 ## Building the Kernel
-If your kernel is in assembly:
+
+### Compiling kernel.c:
 ```sh
-nasm -f bin src/kernel.asm -o boot/kernel.bin
+gcc -m32 -fno-stack-protector -fno-builtin -c src/kernel.c -o kernel.o
 ```
-If transitioning to C, compile it with:
+### Compiling boot.s:
 ```sh
-gcc -ffreestanding -c src/kernel.c -o boot/kernel.o
-ld -T linker.ld -o boot/kernel.bin boot/kernel.o
+nasm -f elf32 src/boot.asm -o boot.o
+```
+### Linker link:
+```sh
+ld -m elf_i386 -T src/linker.ld -o kernel kernel.o boot.o
 ```
 
-## Configuring GRUB
-Ensure `grub.cfg` contains the following:
-```cfg
-menuentry "PBL-OS" {
-    multiboot /boot/kernel.bin
-    boot
-}
+### Move to kernel to boot:
+```sh
+mv kernel boot/kernel
 ```
 
 ## Creating a Bootable ISO
