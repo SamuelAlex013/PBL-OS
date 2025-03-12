@@ -19,9 +19,9 @@ echo "Bootloader assembled successfully."
 ld -m elf_i386 -T src/linker.ld -o kernel boot.o kernel.o
 echo "Kernel linked successfully."
 
-# Move the kernel to the boot directory
+# Move the kernel to the iso directory
 mv kernel iso/kernel
-echo "Kernel moved to boot directory."
+echo "Kernel moved to iso directory."
 
 # Create the bootable ISO image with verbose output
 grub-mkrescue -o PBL-OS.iso iso/

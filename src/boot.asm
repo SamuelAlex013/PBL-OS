@@ -1,14 +1,13 @@
 BITS 32
 
-section .multiboot
+section .text
     ALIGN 4
     DD 0x1BADB002
     DD 0x00
     DD -(0x1BADB002 + 0x00)
 
-section .text
-    global start
-    extern kmain
+global start
+extern kmain
 
 start:
     CLI
