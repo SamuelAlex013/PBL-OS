@@ -14,20 +14,20 @@ Before testing the OS, ensure you have the following installed:
 
 ## Building the Kernel
 
-### Compiling kernel.c:
+### Compile the C kernel file:
 ```sh
 gcc -m32 -fno-stack-protector -fno-builtin -c src/kernel.c -o kernel.o
 ```
-### Compiling boot.s:
+### Assemble the boot assembly file:
 ```sh
 nasm -f elf32 src/boot.asm -o boot.o
 ```
-### Linker link:
+### Link the object files using the linker script::
 ```sh
-ld -m elf_i386 -T src/linker.ld -o kernel kernel.o boot.o
+ld -m elf_i386 -T src/linker.ld -o kernel boot.o kernel.o
 ```
 
-### Move to kernel to boot:
+### Move the kernel to the boot directory:
 ```sh
 mv kernel boot/kernel
 ```
@@ -41,5 +41,5 @@ grub-mkrescue -o PBL-OS.iso boot/
 ## Testing with QEMU
 To run the OS using QEMU, execute:
 ```sh
-qemu-system-x86_64 -cdrom PBL-OS.iso
+qemu-system-i386 -cdrom PBL-OS.iso
 ```

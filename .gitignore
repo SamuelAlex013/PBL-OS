@@ -1,6 +1,5 @@
 .git
 .vscode
-.boot.o
-.kernel.o
-.PBL-OS.iso
-/boot/kernel
+boot.o
+kernel.o
+PBL-OS.iso

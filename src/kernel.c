@@ -1,6 +1,6 @@
-void kmain();
+void kmain(void);
 
-void kmain()
+void kmain(void)
 {
-    
+    while(1);
 }
