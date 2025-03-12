@@ -4,7 +4,7 @@
 set -e
 
 #Moving grub configuration file to iso directory
-mv boot/grub/grub.cfg iso/boot/grub/grub.cfg
+cp boot/grub/grub.cfg iso/boot/grub/grub.cfg
 echo "grub.cfg moved to boot directory."
 
 # Compile the C kernel file
