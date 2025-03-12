@@ -43,3 +43,11 @@ To run the OS using QEMU, execute:
 ```sh
 qemu-system-i386 -cdrom PBL-OS.iso
 ```
+
+
+## To Compile alltogether
+
+```sh
+chmod +x build.sh
+./build.sh
+```
