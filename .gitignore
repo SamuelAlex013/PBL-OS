@@ -1,3 +1,3 @@
-*.o
-*.bin
-*.iso
+.git
+/boot/kernel.bin
+/iso/boot/kernel.bin
