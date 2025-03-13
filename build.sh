@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Exit immediately if a command exits with a non-zero status
 set -e
 
@@ -29,5 +27,5 @@ echo "Object files deleted."
 
 
 # Run the OS in QEMU
-qemu-system-i386 -cdrom PBL-OS.iso
+qemu-system-x86_64 -cdrom PBL-OS.iso
 
