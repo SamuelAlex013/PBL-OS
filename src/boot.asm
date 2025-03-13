@@ -18,7 +18,7 @@ start:
 HaltKernel:
     CLI
     HLT
-    JMP HaltKernel
+    JMP HaltKernel ; .text section ends here
 
 section .bss
     ALIGN 4
