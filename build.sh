@@ -3,8 +3,6 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-#Moving grub configuration file to iso directory
-
 # Compile the C kernel file
 gcc -m32 -fno-stack-protector -fno-builtin -c src/kernel.c -o kernel.o
 echo "Kernel compiled successfully."
@@ -17,11 +15,11 @@ echo "Bootloader assembled successfully."
 ld -m elf_i386 -T src/linker.ld -o kernel boot.o kernel.o
 echo "Kernel linked successfully."
 
-# Move the kernel to the iso directory
+# Move the kernel to the boot directory
 mv kernel PBL/boot/kernel
-echo "Kernel moved to iso directory."
+echo "Kernel moved to boot directory."
 
-# Create the bootable ISO image with verbose output
+# Create the bootable ISO image
 grub-mkrescue -o PBL-OS.iso PBL/
 echo "Bootable ISO created successfully."
 
