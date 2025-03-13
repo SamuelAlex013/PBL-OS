@@ -1,48 +1,46 @@
 # PBL-OS
 
-## Prerequisites
-Before testing the OS, ensure you have the following installed:
-- GCC (for compiling the kernel)
-- NASM (for assembling the kernel in assembly language)
-- GRUB (for bootloader setup)
-- QEMU (for testing the OS in a virtualized environment)
-
-## Building the Kernel
-
-### Compile the C kernel file:
-```sh
-gcc -m32 -fno-stack-protector -fno-builtin -c src/kernel.c -o kernel.o
+## Project Structure
 ```
-### Assemble the boot assembly file:
-```sh
-nasm -f elf32 src/boot.asm -o boot.o
-```
-### Link the object files using the linker script::
-```sh
-ld -m elf_i386 -T src/linker.ld -o kernel boot.o kernel.o
+PBL-OS/
+├── PBL/
+│   ├── boot/
+│   │   ├── grub/
+│   │   │   ├── grub.cfg
+│   │   ├── kernel
+│   ├── src/
+│       ├── boot.asm
+│       ├── kernel.c
+│       ├── linker.ld
+├── .gitignore
+├── build.sh
+├── PBL-OS.iso
+├── README.md
 ```
 
-### Move the kernel to the boot directory:
-```sh
-mv kernel boot/kernel
-```
+## Description
+PBL-OS is a minimalistic operating system designed as a project to understand OS fundamentals, including bootloaders, kernel development, and low-level system programming.
 
-## Creating a Bootable ISO
-Run the following command to create a bootable ISO:
-```sh
-grub-mkrescue -o PBL-OS.iso boot/
-```
+## Components
+- **Bootloader**: Configured with GRUB, located in `boot/grub/grub.cfg`.
+- **Kernel**: Main kernel binary found in `boot/kernel`, built from `src/kernel.c`.
+- **Assembly Boot Code**: `src/boot.asm` is responsible for low-level initialization.
+- **Linker Script**: `src/linker.ld` manages how different parts of the OS are linked together.
+- **Build Script**: `build.sh` compiles and assembles the OS into an ISO file.
 
-## Testing with QEMU
-To run the OS using QEMU, execute:
-```sh
-qemu-system-i386 -cdrom PBL-OS.iso
-```
-
-
-## To Compile alltogether
-
+## Building the OS
+To build and generate the bootable ISO:
 ```sh
 chmod +x build.sh
 ./build.sh
 ```
+
+## Running in QEMU
+To test the OS in a virtual environment:
+```sh
+qemu-system-x86_64 -cdrom PBL-OS.iso
+```
+
+## Current Status
+- The OS successfully boots into GRUB and loads the kernel.
+- Basic structure is in place for further development.
