@@ -9,9 +9,10 @@ void sleep(int ms)
 
 void kmain()
 {
-    print("Hello, Kernel World!");
-    print("Welcome to the OS!");
+    sleep(1000);
+    print("Hello, Kernel World!\n");
     sleep(1000);
     paging();
+    clear();
     while(1);
 }

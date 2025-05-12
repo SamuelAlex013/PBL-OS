@@ -2,7 +2,6 @@
 #include "screen.h"
 #include <stdint.h>
 
-
 void paging()
 {
     uint32_t *page_directory = (uint32_t *)0x00000000; // Page directory base address
@@ -14,19 +13,25 @@ void paging()
         page_table[i] = 0;
     }
 
-    // Set up the first page table entry
-    page_table[0] = 0x00000000 | 3; // Present, read/write, user mode
+    // Identity-map first 4MB of memory (1 page table worth)
+    for (int i = 0; i < 1024; i++) {
+        page_table[i] = (i * 0x1000) | 3; // Present, read/write
+    }
 
-    // Set up the first page directory entry
-    page_directory[0] = ((uint32_t)page_table) | 3; // Present, read/write, user mode
+    // Specifically ensure 0xB8000 is mapped (optional redundancy)
+    page_table[0xB8] = 0xB8000 | 3; // Explicitly map video memory
 
-    // Load the page directory base register
+    // Set page directory to use our page table
+    page_directory[0] = ((uint32_t)page_table) | 3;
+
+    // Load page directory base register
     asm volatile("mov %0, %%cr3" : : "r"(page_directory));
 
     // Enable paging
     uint32_t cr0;
     asm volatile("mov %%cr0, %0" : "=r"(cr0));
-    cr0 |= 1; // Set the PG bit to enable paging
+    cr0 |= 0x80000000; // Set PG bit (bit 31) to enable paging
     asm volatile("mov %0, %%cr0" : : "r"(cr0));
 
+    print("Paging enabled!\n");
 }
