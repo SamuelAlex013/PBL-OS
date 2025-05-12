@@ -24,3 +24,5 @@ section .bss
     ALIGN 4
     RESB 8192
 stack_space:
+
+section .note.GNU-stack noalloc noexec nowrite progbits
