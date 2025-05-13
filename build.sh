@@ -36,4 +36,3 @@ echo "Object files deleted."
 
 # Run the OS in QEMU
 qemu-system-x86_64 -cdrom PBL-OS.iso
-

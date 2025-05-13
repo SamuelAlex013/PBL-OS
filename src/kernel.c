@@ -13,6 +13,6 @@ void kmain()
     print("Hello, Kernel World!\n");
     sleep(1000);
     paging();
-    clear();
+
     while(1);
 }

@@ -10,7 +10,6 @@ static inline void outb(uint16_t port, uint8_t val) {
 
 void update_cursor(int row, int col) {
     uint16_t pos = row * MAX_X + col;
-
     outb(0x3D4, 0x0F);       // Tell VGA we are setting the low cursor byte
     outb(0x3D5, (uint8_t)(pos & 0xFF));
     outb(0x3D4, 0x0E);       // Now the high byte
