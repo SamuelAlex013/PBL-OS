@@ -1,53 +1,58 @@
-# PBL-OS
+# 🖥️ PBL-OS – A Minimal x86 Operating System
 
-## Project Structure
-```
-PBL-OS
-├── PBL
-│   └── boot
-│       ├── grub
-│       │   └── grub.cfg
-│       └── kernel
-├── PBL-OS.iso
-├── README.md
-├── build.sh
-├── src
-│   ├── boot.asm
-│   ├── kernel.c
-│   └── linker.ld
-└── tools.sh
+PBL-OS is a minimalist 32-bit operating system developed from scratch to explore core OS concepts such as bootloading, kernel development, memory layout, and low-level system programming.
+
+## 📁 Project Structure
 ```
 
-## Description
-PBL-OS is a minimalistic operating system designed as a project to understand OS fundamentals, including bootloaders, kernel development, and low-level system programming.
+PBL-OS/
+├── PBL/
+│ └── boot/
+│ ├── grub/
+│ │ └── grub.cfg # GRUB bootloader configuration
+│ └── kernel # Compiled kernel
+├── src/
+│ ├── boot.asm # Assembly boot code
+│ ├── kernel.c # Kernel written in C
+│ └── linker.ld # Linker script for memory layout
+├── build.sh # Build automation script
+├── tools.sh # Optional helper tools
+├── PBL-OS.iso # Output bootable ISO image
+└── README.md # Project documentation
 
-## Components
-- **Bootloader**: Configured with GRUB, located in `PBL/boot/grub/grub.cfg`.
-- **Kernel**: Main kernel binary found in `PBL/boot/kernel`, built from `src/kernel.c`.
-- **Assembly Boot Code**: `src/boot.asm` is responsible for low-level initialization.
-- **Linker Script**: `src/linker.ld` manages how different parts of the OS are linked together.
-- **Build Script**: `build.sh` compiles and assembles the OS into an ISO file.
+```
 
-## Building the OS
-To build and generate the bootable ISO:
-```sh
+
+## ⚙️ Components
+
+- **Bootloader**: Uses GRUB (via `grub.cfg`) to load the kernel at boot time.
+- **Kernel**: Written in C, performs basic OS functions like printing and I/O.
+- **Boot Code**: Assembly code (`boot.asm`) sets up initial CPU state and loads the kernel.
+- **Linker Script**: Defines memory layout for linking the kernel ELF file.
+- **Build Scripts**: `build.sh` compiles everything and creates the ISO.
+
+## 🛠️ Build Instructions
+
+### 🔧 Requirements
+
+Ensure the following tools are installed:
+
+- `nasm` – for assembling boot code
+- `gcc` – for compiling C code
+- `ld` – linker
+- `grub-mkrescue` – to generate ISO
+
+### 🧪 Build Command
+
+```bash
 chmod +x build.sh
 ./build.sh
 ```
+This will output a file named PBL-OS.iso which you can boot using an emulator or burn to a USB drive.
 
-## Running in QEMU
-To test the OS in a virtual environment:
-```sh
-qemu-system-x86_64 -cdrom PBL-OS.iso
+💻 How to Run
+To test using QEMU:
+```bash
+qemu-system-i386 -cdrom PBL-OS.iso
 ```
 
-## Current Status
-- The OS successfully boots into GRUB and loads the kernel.
-- Basic structure is in place for further development.
-
-## Installation & Setup
- Install the necessary tools using the provided script:
-   ```sh
-   chmod +x tools.sh
-   ./tools.sh
-   ```
